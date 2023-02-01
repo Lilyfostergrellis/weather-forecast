@@ -77,6 +77,7 @@ function showWeatherData (data){
     
     
     `;
+    //temperature is undefined - revisit
 
     let otherDayForcast = ''
     data.daily.forEach((day, idx) => {
