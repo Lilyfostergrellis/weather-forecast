@@ -32,3 +32,47 @@ setInterval(() => {
     //takes from both the arrays 'days' and 'months' to accumulate and display on the landing page
 
 }, 1000);
+
+getWeatherData()
+function getWeatherData (){
+    navigator.geolocation.getCurrentPosition((success) => {
+
+        let {latitude, longitude } = success.coords;
+
+        fetch('https://api.openweathermap.org/data/3.0/onecall?lat=${latitude}&lon=${longitude}&exclude=hourly,minutely&unit=metric&appid=${API_KEY}')
+        .then(res => res.json())
+        .then(data => {
+
+        console.log(data)
+        showWeatherData(data);
+        })
+
+
+    })
+}
+
+function showWeatherData (data) {
+
+    let {humitdity, pressure, sunrise, sunset, wind_speed} = data.current;
+    /* <div class="others" id="current-weather-items">
+    <div class="weather-item">
+        <div>Humidity</div>
+        <div>95.2%</div>
+    </div>
+    <div class="weather-item">
+        <div>Pressure</div>
+        <div>121</div>
+    </div>
+    <div class="weather-item">
+        <div>Wind Speed</div>
+        <div>227</div>
+    </div>
+    <div class="weather-item">
+        <div>Temperature</div>
+        <div>22</div>
+    </div>  */
+
+}
+
+
+/* https://api.openweathermap.org/data/3.0/onecall?lat={lat}&lon={lon}&exclude={part}&appid={API key} */
